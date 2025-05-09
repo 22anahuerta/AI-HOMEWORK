@@ -1,64 +1,100 @@
-body {
-    font-family: Arial, sans-serif;
+nvm listbody {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #e0ffe0; /* Debug: Light green background to confirm CSS is applied */
 }
+
 .chat-container {
     width: 400px;
     height: 600px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
+    border-radius: 15px; /* Soft rounded corners */
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .chat-window {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between messages */
 }
+
 .chat-message {
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
+    max-width: 75%;
+    padding: 12px 15px;
+    border-radius: 20px; /* Rounded chat bubbles */
+    font-size: 16px;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease-in-out; /* Subtle animation */
 }
+
 .user-message {
-    background-color: #d1e7dd;
+    background-color: #d1f7c4; /* Soft green for user messages */
     align-self: flex-end;
+    color: #333;
 }
+
 .bot-message {
-    background-color: #f8d7da;
+    background-color: #f0f0f0; /* Light gray for bot messages */
     align-self: flex-start;
+    color: #333;
 }
+
 .input-container {
     display: flex;
     padding: 10px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff;
 }
+
 .input-container input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px; /* Rounded input field */
     outline: none;
+    font-size: 16px;
+    transition: border-color 0.2s;
 }
+
+.input-container input:focus {
+    border-color: #007bff; /* Highlight on focus */
+}
+
 .input-container button {
     margin-left: 10px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px; /* Rounded send button */
     background-color: #007bff;
     color: #fff;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
+
 .input-container button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

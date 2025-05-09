@@ -2,13 +2,31 @@ const chatWindow = document.getElementById('chatWindow');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
 
-sendButton.addEventListener('click', () => {
+sendButton.addEventListener('click', async () => {
     const message = userInput.value.trim();
     if (message) {
         addMessage(message, 'user-message');
         userInput.value = '';
-        // Placeholder for bot response logic
-        addMessage('This is a placeholder for the bot response.', 'bot-message');
+
+        try {
+            const response = await fetch('http://localhost:3000/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                addMessage(data.botMessage, 'bot-message');
+            } else {
+                addMessage('Error: Unable to get a response from the server.', 'bot-message');
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            addMessage('Error: Unable to connect to the server.', 'bot-message');
+        }
     }
 });
 
